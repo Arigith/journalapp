@@ -15,11 +15,9 @@ class Hash():
 class JournalBase(BaseModel):
     title: str
     body: str
+    date_created: date
 
 class Journal(JournalBase):
-    title: str
-    body: str
-    date_created: date
     class Config():
         orm_mode=True
         
@@ -31,14 +29,13 @@ class User(BaseModel):
 class ShowUser(BaseModel):
     name:str
     email:str
-    blogs:List[Journal] = []
     class Config():
         orm_mode=True
-
-class show_blog(BaseModel):
-    title:str
-    body:str
-    creator:ShowUser
+    
+class ShowUserJournal(BaseModel):
+    name:str
+    email:str
+    journals:List[Journal] = []
     class Config():
         orm_mode=True
 
